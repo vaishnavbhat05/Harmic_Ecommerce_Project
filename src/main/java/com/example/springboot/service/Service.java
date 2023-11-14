@@ -1,0 +1,20 @@
+package com.example.springboot.service;
+
+import com.example.springboot.request.SmsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+@org.springframework.stereotype.Service
+public class Service {
+
+    private final SmsSender smsSender;
+
+    @Autowired
+    public Service(@Qualifier("twilio") SmsSenderImpl smsSender) {
+        this.smsSender=smsSender;
+    }
+    public void sendSms(SmsRequest smsRequest) {
+        smsSender.sendSms(smsRequest);
+    }
+
+}
